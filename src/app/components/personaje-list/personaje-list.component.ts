@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { PersonajeService } from 'src/app/services/personaje-service';
+import { LoadingController, ViewWillEnter } from '@ionic/angular';
 import {
   IonHeader, IonToolbar, IonTitle, IonContent,
   IonFooter, IonButtons, IonButton, IonIcon, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle } from '@ionic/angular/standalone';
@@ -26,12 +27,14 @@ export class PersonajeListComponent {
 
   constructor(
     private personajeService: PersonajeService,
-    private router: Router
+    private router: Router,
+    private loadingCtr: LoadingController
   ) {
     addIcons({ arrowBackOutline, arrowForwardOutline });
   }
 
-  ionViewWillEnter() {
+  async ionViewWillEnter() {
+    this.showLoading();
     this.totalPersonajes = this.personajeService.getTotalPersonajes();
     this.paginaActual = 0;
     this.cargarPagina();
@@ -63,5 +66,15 @@ export class PersonajeListComponent {
   verDetalle(index: number) {
     const indiceReal = (this.paginaActual * this.personajesPorPagina) + index;
     this.router.navigate(['/detalle', indiceReal]);
+  }
+
+  async showLoading(){
+    const loading = await this.loadingCtr.create({
+        message: 'Cargando personajes...',
+        spinner: 'circles',
+        duration: 2000
+    });
+    await loading.present();
+    await loading.dismiss();
   }
 }
