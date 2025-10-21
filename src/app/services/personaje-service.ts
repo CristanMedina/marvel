@@ -361,14 +361,18 @@ export class PersonajeService {
         },
     ];
 
-    getPersonajes(): { nombre: string, alias: string }[] {
-        const personajeCorto = this.personajesMarvel.map(p => ({
-            nombre: p.nombre,
-            alias: p.alias
-        }));
+    getPersonajes(inicio: number, fin: number): { nombre: string, alias: string }[] {
+        const personajeCorto = this.personajesMarvel.slice(inicio, fin).map(p => ({
+        nombre: p.nombre,
+        alias: p.alias
+    }));
 
         console.log(personajeCorto);
         return personajeCorto;
+    }
+
+    getTotalPersonajes(): number {
+        return this.personajesMarvel.length;
     }
 
     getPersonaje(index: number){

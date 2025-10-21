@@ -8,8 +8,8 @@
 </ion-header>
 
 <ion-content>
-  <div *ngIf="personaje; else loading">
 
+  @if (personaje) {
     <ion-card>
       <ion-card-header>
         <ion-card-title>{{ personaje.alias }}</ion-card-title>
@@ -47,12 +47,10 @@
         </ion-grid>
       </ion-card-content>
     </ion-card>
-
-  </div>
-
-  <ng-template #loading>
-    <ion-text>
+  } @else {
+    <ion-text class="ion-padding">
       <p>Cargando personaje...</p>
     </ion-text>
-  </ng-template>
+  }
+
 </ion-content>

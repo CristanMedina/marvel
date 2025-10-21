@@ -7,18 +7,40 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item
-      *ngFor="let p of personajesList; let i = index"
-      [button]="true"
-      detail="true"
-      (click)="verDetalle(i)">
 
-      <ion-label>
-        <h2>{{ p.alias }}</h2>
-        <p>{{ p.nombre }}</p>
-      </ion-label>
+  @for (p of personajesList; track p.alias; let i = $index) {
+    <ion-card
+      (click)="verDetalle(i)"
+      [button]="true">
 
-    </ion-item>
-  </ion-list>
+      <ion-card-header>
+        <ion-card-title>{{ p.alias }}</ion-card-title>
+        <ion-card-subtitle>{{ p.nombre }}</ion-card-subtitle>
+      </ion-card-header>
+
+    </ion-card>
+  }
+
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button
+        (click)="anteriorPagina()"
+        [disabled]="anteriorDeshabilitado">
+        <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
+        Anterior
+      </ion-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button
+        (click)="siguientePagina()"
+        [disabled]="siguienteDeshabilitado">
+        Siguiente
+        <ion-icon slot="end" name="arrow-forward-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
