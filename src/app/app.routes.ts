@@ -1,13 +1,25 @@
 import { Routes } from '@angular/router';
 
+// 1. Importa tus componentes
+import { PersonajeListComponent } from './components/personaje-list/personaje-list.component';
+import { PersonajeDetailComponent } from './components/personaje-detail/personaje-detail.component';
+
 export const routes: Routes = [
   {
-    path: 'home',
-    loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
+    path: 'lista-personajes',
+    component: PersonajeListComponent,
+  },
+  {
+    path: 'detalle/:id',
+    component: PersonajeDetailComponent,
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'lista-personajes',
     pathMatch: 'full',
+  },
+  {
+    path: '**',
+    redirectTo: 'lista-personajes',
   },
 ];

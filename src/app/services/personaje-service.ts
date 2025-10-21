@@ -372,6 +372,7 @@ export class PersonajeService {
     }
 
     getPersonaje(index: number){
+        console.log(this.personajesMarvel[index]);
         return this.personajesMarvel[index];
     }
 }
