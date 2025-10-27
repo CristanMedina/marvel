@@ -361,14 +361,19 @@ export class PersonajeService {
         },
     ];
 
-    getPersonajes(inicio: number, fin: number): { nombre: string, alias: string }[] {
-        const personajeCorto = this.personajesMarvel.slice(inicio, fin).map(p => ({
-        nombre: p.nombre,
-        alias: p.alias
-    }));
+    getPersonajes(inicio: number, fin: number): Promise<{ nombre: string, alias: string }[]> {
+        return new Promise<{ nombre: string, alias: string }[]>(resolve => {
 
-        console.log(personajeCorto);
-        return personajeCorto;
+            setTimeout(() => {
+                const personajeCorto = this.personajesMarvel.slice(inicio, fin).map(p => ({
+                    nombre: p.nombre,
+                    alias: p.alias
+                }));
+
+                resolve(personajeCorto);
+
+            }, 1000);
+        });
     }
 
     getTotalPersonajes(): number {
@@ -376,7 +381,6 @@ export class PersonajeService {
     }
 
     getPersonaje(index: number){
-        console.log(this.personajesMarvel[index]);
         return this.personajesMarvel[index];
     }
 }

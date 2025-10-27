@@ -7,7 +7,6 @@
 </ion-header>
 
 <ion-content>
-
   @for (p of personajesList; track p.alias; let i = $index) {
     <ion-card
       (click)="verDetalle(i)"
@@ -21,7 +20,15 @@
     </ion-card>
   }
 
+  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+    <ion-infinite-scroll-content loadingText="Cargando más personajes..." loadingSpinner="dots"></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
+
+
+
+
+<!--
 
 <ion-footer>
   <ion-toolbar>
@@ -44,3 +51,5 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-footer>
+
+-->

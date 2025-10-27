@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 
-// 1. Importa tus componentes
 import { PersonajeListComponent } from './components/personaje-list/personaje-list.component';
 import { PersonajeDetailComponent } from './components/personaje-detail/personaje-detail.component';
 
